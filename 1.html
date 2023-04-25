@@ -1,30 +1,67 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>css demo</title>
+  <style>
+  div {
+    height: 50px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+  }
+  #box1 {
+    width: 50px;
+    color: yellow;
+    background-color: blue;
+  }
+  #box2 {
+    width: 80px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(15, 99, 30);
+  }
+  #box3 {
+    width: 40px;
+    color: #fcc;
+    background-color: #123456;
+  }
+  #box4 {
+    width: 70px;
+    background-color: #f11;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+</head>
 <body>
-<p id="displayTime"></p>
-<p>Click "Stop" to stop the displayed time over here.</p>
-<button onclick="stopTime()">Stop</button>
-<button onclick="start()">Start</button>
+ 
+<p id="result">&nbsp;</p>
+<div id="box1">1</div>
+<div id="box2">2</div>
+<div id="box3">3</div>
+<div id="box4">4</div>
+ 
 <script>
-var timerId= setInterval(()=>
-{
-getTime()
-},1000);
-function getTime()
-{
-var currentDate= new Date();
-var currentTime= currentDate.toLocaleTimeString();
-document.getElementById("displayTime").innerHTML = currentTime;
-}
-function stopTime()
-{
-clearInterval(timerId);
-
-}
-function start()
-{
-setInterval(timerId);
-}
+$("div").on("click",function(){
+    var html=["the clicked div has the following style:"];
+var styleProps=$(this).css(["width","height","color","background-color"]);
+$.each(styleProps,function(prop,value){
+    html.push(prop+":"+value);
+});
+    $("#result").html(html.join("<br>"));
+});
+// $( "div" ).on( "click", function() {
+//   var html = [ "The clicked div has the following styles:" ];
+ 
+//   var styleProps = $( this ).css([
+//     "width", "height", "color", "background-color"
+//   ]);
+//   $.each( styleProps, function( prop, value ) {
+//     html.push( prop + ": " + value );
+//   });
+ 
+//   $( "#result" ).html( html.join( "<br>" ) );
+// });
 </script>
+ 
 </body>
 </html>
